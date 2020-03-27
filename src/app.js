@@ -47,11 +47,17 @@ console.log("from : " + periodFrom);
 console.log("to : " + periodTo);
 
 estate(periodFrom, periodTo)
-  .then(estate => {
-      console.log(estate)
-  })
+  .then(response => {
+      console.log(response);
+      let div2 = document.getElementById("area2");
+      for(let i of Object.keys(response.data)){
+        let newspan = document.createElement("span");
+        div2.appendChild(newspan);
+        newspan.innerHTML = response.data[i].Type +":"+ response.data[i].Prefecture;
+      }
+})
 
-  const search = document.getElementById("search");
-  search.addEventListener('click', () => {
-      console.log("clickされました。");
-  }, false);
+const search = document.getElementById("search");
+search.addEventListener('click', () => {
+    console.log("clickされました。");
+}, false);
