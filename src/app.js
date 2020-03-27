@@ -60,4 +60,5 @@ estate(periodFrom, periodTo)
 const search = document.getElementById("search");
 search.addEventListener('click', () => {
     console.log("clickされました。");
+    consolelog(sample);
 }, false);
