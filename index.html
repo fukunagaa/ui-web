@@ -1,29 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <link rel="stylesheet" type="text/css" href="./src/css/index.css">
-  </head>
-  <body>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="./src/css/index.css">
+</head>
+
+<body>
+  <div class="input">
     <div class="input-area-child">
-      <input placeholder="moji">
+      <div class="input-line">
+        <label>from_year</label>
+        <input placeholder="2016" id="input-from-year" maxlength="4">
+      </div>
+      <div class="input-line">
+        <label>from_month</label>
+        <input placeholder="10" id="input-from-month" maxlength="2">
+      </div>
     </div>
     <div class="input-area-child">
-      <input placeholder="mojijiji">
+      <div class="input-line">
+        <label>to_year</label>
+        <input placeholder="2017" id="input-to-year" maxlength="4">
+      </div>
+      <div class="input-line">
+        <label>to_month</label>
+        <input placeholder="3" id="input-to-month" maxlength="2">
+      </div>
     </div>
     <div class="input-area-child">
-      <input placeholder="ajiajiji">
+      <div class="input-line">
+        <label>area_code</label>
+        <input placeholder="13" id="input-area-code" maxlength="2">
+      </div>
+      <div class="input-line">
+        <label>area_name</label>
+        <input placeholder="東京" id="input-area-name">
+      </div>
     </div>
     <div>
-        <button type="button" id="search">search</button>
+      <button type="button" id="search">search</button>
     </div>
-    <div class="result">
-      <div class="test-item estate">
-        <ul id="return-ul-area1"></ul>
-      </div>
-      <div class="test-item transactionPeriod">
-        <ul id="return-ul-area2"></ul>
-      </div>
+  </div>
+  <div class="result">
+    <div class="test-item estate">
+      <ul id="return-ul-area1"></ul>
     </div>
-    <script src="dist/app.js"></script>
-  </body>
+    <div class="test-item transactionPeriod">
+      <ul id="return-ul-area2"></ul>
+    </div>
+  </div>
+  <script src="dist/app.js"></script>
+</body>
+
 </html>

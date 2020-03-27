@@ -2,7 +2,18 @@
     display: flex;
 }
 
+.input {
+    flex-direction: column;
+}
+
+.input-line {
+    flex-direction: row;
+    padding: 1rem 2rem;
+}
+
 ul {
-    margin : 10px auto ;
+    margin : 10px;
     border : solid 2px #cccccc ;
+    position: relative;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
 }
