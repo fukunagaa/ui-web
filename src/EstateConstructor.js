@@ -1,10 +1,13 @@
 export default class {
-    constructor(param1, param2) {
-        this.param1 = param1;
-        this.param2 = param2;
+    constructor(municipality, districtName, tradePrice, area, buildingYear) {
+        this.municipality = municipality;
+        this.tradePrice = tradePrice;
+        this.area = area;
+        this.buildingYear = buildingYear;
+        this.districtName = districtName;
     }
 
     get info() {
-        return `param1:${this.param1}  param2:${this.param2}`;
+        return `municipality:${this.municipality}  districName:${this.districtName}  tradePrice:${this.tradePrice}  area:${this.area}  buildingYear:${this.buildingYear}`;
     }
 }

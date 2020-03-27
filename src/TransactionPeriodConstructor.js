@@ -1,10 +1,10 @@
 export default class {
-    constructor(param1, param2) {
-        this.param1 = param1;
-        this.param2 = param2;
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
     }
 
     get info() {
-        return `param1:${this.param1}  param2:${this.param2}`;
+        return `id:${this.id}  name:${this.name}`;
     }
 }

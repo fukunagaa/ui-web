@@ -14,11 +14,30 @@ const ulArea2 = document.getElementById("return-ul-area2");
 
 const search = document.getElementById("search");
 search.addEventListener('click', () => {
+    // 入力時期From
+    let inputYearFrom = document.getElementById("input-from-year").value;
+    let inputMonthFrom = document.getElementById("input-from-month").value;
+    // 入力時期To
+    let inputYearTo = document.getElementById("input-to-year").value;
+    let inputMonthTo = document.getElementById("input-to-month").value;
+
+    let periodFrom = 20999;
+    let periodTo = 20999;
+
+    // 取引時期From 整形
+    let monthFrom = exsample(inputMonthFrom);
+    periodFrom = inputYearFrom * 10 + monthFrom;
+
+    // 取引時期To 整形
+
+    let monthTo = exsample(inputMonthTo);
+    periodTo = inputYearTo * 10 + monthTo;
+
+    // 入力エリアコード
+    let areaCode = document.getElementById("input-area-code").value;
     /*
      * 不動産取引価格情報取得API
     */
-    // 入力エリアコード
-    let areaCode = document.getElementById("input-area-code").value;
     let sample;
 
     transactionPeriod(areaCode)
@@ -40,33 +59,14 @@ search.addEventListener('click', () => {
     /*
      * 都道府県内市区町村一覧取得
     */
-    // 入力時期From
-    let inputYearFrom = document.getElementById("input-from-year").value;
-    let inputMonthFrom = document.getElementById("input-from-month").value;
-    // 入力時期To
-    let inputYearTo = document.getElementById("input-to-year").value;
-    let inputMonthTo = document.getElementById("input-to-month").value;
-
-    let periodFrom = 20999;
-    let periodTo = 20999;
-
-    // 取引時期From 整形
-    let monthFrom = exsample(inputMonthFrom);
-    periodFrom = inputYearFrom * 10 + monthFrom;
-
-    // 取引時期To 整形
-
-    let monthTo = exsample(inputMonthTo);
-    periodTo = inputYearTo * 10 + monthTo;
-
     console.log("from : " + periodFrom);
     console.log("to : " + periodTo);
 
-    estate(periodFrom, periodTo)
+    estate(periodFrom, periodTo, areaCode)
         .then(response => {
             estateList = [];
             for (let i of Object.keys(response.data)) {
-                const estateConstructor = new EstateConstructor(response.data[i].Type, response.data[i].Prefecture);
+                const estateConstructor = new EstateConstructor(response.data[i].Municipality, response.data[i].DistrictName, response.data[i].TradePrice, response.data[i].Area, response.data[i].BuildingYear);
                 estateList.push(estateConstructor);
                 creatLiElement(ulArea2, estateConstructor.info);
             }
