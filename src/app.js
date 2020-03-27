@@ -1,7 +1,16 @@
 import exsample from './module';
 import transactionPeriod from './transactionPeriod';
 import estate from './estate';
+import EstateConstructor from './EstateConstructor';
+import TransactionPeriodConstructor from './TransactionPeriodConstructor';
 
+// リストの作成
+let estateList = new Array();
+let transactionPeriodList = new Array();
+
+// 表示欄
+const ulArea1 = document.getElementById("return-ul-area1");
+const ulArea2 = document.getElementById("return-ul-area2");
 
 /*
  * 不動産取引価格情報取得API
@@ -11,9 +20,10 @@ let sample;
 
 transactionPeriod(areaCode)
 .then(response => {
-    let div = document.getElementById("area1");
     for(let i of Object.keys(response.data)){
-        div.innerHTML = response.data[i].id +":"+ response.data[i].name;
+        const transactionPeriodConstructor = new TransactionPeriodConstructor(response.data[i].id, response.data[i].name);
+        transactionPeriodList.push(transactionPeriodConstructor);
+        creatLiElement(ulArea1, transactionPeriodConstructor.info);
     }
     return response.data;
 })
@@ -48,14 +58,19 @@ console.log("to : " + periodTo);
 
 estate(periodFrom, periodTo)
   .then(response => {
-      console.log(response);
-      let div2 = document.getElementById("area2");
+      estateList = [];
       for(let i of Object.keys(response.data)){
-        let newspan = document.createElement("span");
-        div2.appendChild(newspan);
-        newspan.innerHTML = response.data[i].Type +":"+ response.data[i].Prefecture;
+          const estateConstructor = new EstateConstructor(response.data[i].Type, response.data[i].Prefecture);
+          estateList.push(estateConstructor);
+          creatLiElement(ulArea2, estateConstructor.info);
       }
 })
+
+const creatLiElement = (ulArea, value) => {
+    const newLi = document.createElement("li");
+    newLi.innerText = value;
+    ulArea.appendChild(newLi);
+}
 
 const search = document.getElementById("search");
 search.addEventListener('click', () => {
